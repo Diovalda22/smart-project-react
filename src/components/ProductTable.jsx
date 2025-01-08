@@ -62,10 +62,10 @@ export const ProductTable = () => {
     <>
       <div className="flex justify-between mb-4">
         <h1 className="text-3xl font-bold mb-5">Data Products</h1>
-        <NavLink to={"/product/add"}>
+        <NavLink to={"/admin/product/add"}>
           <button
             type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
           >
             Add New Product
           </button>
@@ -123,7 +123,7 @@ export const ProductTable = () => {
                       <ul className="py-2">
                         <li>
                           <button
-                            onClick={() => navigate("/product/edit")}
+                            onClick={() => navigate("/admin/product/edit")}
                             className="block w-full text-left py-2 px-4 text-gray-700 hover:bg-gray-100"
                           >
                             Edit
