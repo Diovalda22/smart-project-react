@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import SmartLogyLogo from "../assets/smartlogy_logo.svg";
 
 export const SidebarMenu = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen((prevState) => !prevState);
-  };
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   return (
     <>
       <div className="antialiased bg-gray-50 dark:bg-gray-900">
@@ -53,13 +54,10 @@ export const SidebarMenu = () => {
                 className="flex items-center justify-between mr-4"
               >
                 <img
-                  src="https://flowbite.s3.amazonaws.com/logo.svg"
+                  src={SmartLogyLogo}
                   className="mr-3 h-8"
                   alt="Flowbite Logo"
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Flowbite
-                </span>
               </NavLink>
               <form action="#" method="GET" className="hidden md:block md:pl-2">
                 <label htmlFor="topbar-search" className="sr-only">
@@ -91,7 +89,7 @@ export const SidebarMenu = () => {
               </form>
             </div>
             <div className="flex items-center lg:order-2">
-              <button
+              {/* <button
                 type="button"
                 data-drawer-toggle="drawer-navigation"
                 aria-controls="drawer-navigation"
@@ -112,14 +110,12 @@ export const SidebarMenu = () => {
                   ></path>
                 </svg>
               </button>
-              {/* <!-- Notifications --> */}
               <button
                 type="button"
                 data-dropdown-toggle="notification-dropdown"
                 className="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">View notifications</span>
-                {/* <!-- Bell icon --> */}
                 <svg
                   aria-hidden="true"
                   className="w-6 h-6"
@@ -130,7 +126,6 @@ export const SidebarMenu = () => {
                   <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
                 </svg>
               </button>
-              {/* <!-- Dropdown menu --> */}
               <div
                 className="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
                 id="notification-dropdown"
@@ -355,15 +350,14 @@ export const SidebarMenu = () => {
                     View all
                   </div>
                 </a>
-              </div>
+              </div> */}
               {/* <!-- Apps --> */}
-              <button
+              {/* <button
                 type="button"
                 data-dropdown-toggle="apps-dropdown"
                 className="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">View notifications</span>
-                {/* <!-- Icon --> */}
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -372,9 +366,9 @@ export const SidebarMenu = () => {
                 >
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                 </svg>
-              </button>
+              </button> */}
               {/* <!-- Dropdown menu --> */}
-              <div
+              {/* <div
                 className="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                 id="apps-dropdown"
               >
@@ -572,7 +566,7 @@ export const SidebarMenu = () => {
                     </div>
                   </a>
                 </div>
-              </div>
+              </div> */}
               <button
                 type="button"
                 className="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -717,19 +711,46 @@ export const SidebarMenu = () => {
         </nav>
 
         {/* <!-- Sidebar --> */}
+        <button
+          className="md:hidden fixed top-4 left-4 z-50 p-2 bg-gray-200 rounded-lg dark:bg-gray-700 focus:outline-none"
+          onClick={toggleSidebar}
+          aria-label="Toggle Sidebar"
+        >
+          <svg
+            className="w-6 h-6 text-gray-700 dark:text-gray-300"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                isSidebarOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
 
+        {/* Sidebar */}
         <aside
-          className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+          className={`fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
           aria-label="Sidenav"
-          id="drawer-navigation"
         >
           <div className="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+            {/* Search Input */}
             <form action="#" method="GET" className="md:hidden mb-2">
               <label htmlFor="sidebar-search" className="sr-only">
                 Search
               </label>
               <div className="relative">
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg
                     className="w-5 h-5 text-gray-500 dark:text-gray-400"
                     fill="currentColor"
@@ -745,22 +766,23 @@ export const SidebarMenu = () => {
                 </div>
                 <input
                   type="text"
-                  name="search"
                   id="sidebar-search"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  className="w-full p-2 pl-10 text-sm bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-primary-500 focus:border-primary-500"
                   placeholder="Search"
                 />
               </div>
             </form>
+
+            {/* Sidebar Menu */}
             <ul className="space-y-2">
               <li>
                 <NavLink
-                  to={"/admin"}
-                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  to="/admin"
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   <svg
                     aria-hidden="true"
-                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="w-6 h-6 text-gray-500 dark:text-gray-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -773,12 +795,12 @@ export const SidebarMenu = () => {
               </li>
               <li>
                 <NavLink
-                  to={"/admin/product"}
-                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  to="/admin/product"
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   <svg
                     aria-hidden="true"
-                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="w-6 h-6 text-gray-500 dark:text-gray-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -792,29 +814,21 @@ export const SidebarMenu = () => {
               <li>
                 <button
                   type="button"
-                  className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  aria-controls="dropdown-pages"
-                  aria-expanded={isDropdownOpen}
+                  className="flex items-center w-full p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   onClick={toggleDropdown}
                 >
                   <svg
-                    aria-hidden="true"
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    className="w-6 h-6 text-gray-500 dark:text-gray-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"></path>
                   </svg>
                   <span className="flex-1 ml-3 text-left whitespace-nowrap">
                     Pages
                   </span>
                   <svg
-                    aria-hidden="true"
                     className={`w-6 h-6 transition-transform ${
                       isDropdownOpen ? "rotate-180" : ""
                     }`}
@@ -822,15 +836,10 @@ export const SidebarMenu = () => {
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path>
                   </svg>
                 </button>
                 <ul
-                  id="dropdown-pages"
                   className={`py-2 space-y-2 ${
                     isDropdownOpen ? "block" : "hidden"
                   }`}
@@ -838,7 +847,7 @@ export const SidebarMenu = () => {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center p-2 pl-11 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     >
                       Settings
                     </a>
@@ -846,82 +855,12 @@ export const SidebarMenu = () => {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center p-2 pl-11 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     >
                       Kanban
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Calendar
-                    </a>
-                  </li>
                 </ul>
-              </li>
-            </ul>
-            <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                    <path
-                      fillRule="evenodd"
-                      d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="ml-3">Docs</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path>
-                  </svg>
-                  <span className="ml-3">Components</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="ml-3">Help</span>
-                </a>
               </li>
             </ul>
           </div>
